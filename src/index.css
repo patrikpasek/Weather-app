@@ -1,13 +1,90 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --primary-color: #27374d;
+  --secondary-color: #526D82;
+  --third-color: #9DB2BF;
+  --fourth-color: #DDE6ED;
+}
+
+body {
+  background-color: var(--fourth-color);
+  color: var(--fourth-color);
+  font-size: 16px;
+}
+
+h1, h2, h3, h4 {
+  font-size: 2em;
+}
+
+a {
+  color: var(--fourth-color);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+a:hover,
+a:active {
+  color: var(--third-color);
+}
+
+img {
+  width: 360px;
+}
+
+.container-app {
+  min-height: 80vh;
+  padding: 0 10%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 1680px) {
+  .container-app {
+    gap: 50px;
+  }
+}
+
+@media only screen and (max-width: 1200px){
+  .container-app {
+    padding: 150px 0;
+    flex-wrap: wrap;
+  }
+  h1, h2, h3, h4 {
+    font-size: 1.8em;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 680px){
+  h1, h2, h3, h4 {
+    font-size: 1.3em;
+  }
 }

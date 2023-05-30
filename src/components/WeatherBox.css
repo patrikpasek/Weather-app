@@ -1,0 +1,204 @@
+/* Styly boxu s počasím */
+.container-weatherBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+}
+
+.weatherBox {
+    height: 480px;
+    width: 380px;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 8px;
+
+    background-color: var(--primary-color);
+}
+
+.weatherBox .boxs {
+    height: 50%;
+    width: 100%;
+
+    display: flex;
+}
+
+.weatherBox .boxs .mini-boxs {
+    height: 100%;
+    width: 50%;
+    padding: 0 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weatherBox .boxs .mini-boxs-img {
+    height: 100%;
+    width: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weatherBox .boxs .asset-box {
+    height: 100%;
+    width: 50%;
+}
+
+.weatherBox .boxs .asset-box .asset-mini-box {
+    height: 50%;
+    width: 100%;
+    padding: 0 15%;
+
+    display: flex;
+    align-items: flex-start;
+
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weatherBox .boxs .asset-box .asset-mini-box svg {
+    font-size: 32px;
+}
+
+/* Styly boxu s městy */
+.container-WeatherCity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+}
+
+.WeatherCity {
+    height: 560px;
+    width: 920px;
+
+    padding: 5%;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.all-city {
+    height: 85%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.all-city .one-city {
+    width: 230px;
+    height: 70px;
+
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+}
+
+.btnClick-icon {
+    width: 20%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnClick-one-city {
+    width: 80%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnClick-icon svg {
+    font-size: 25px;
+    transition: all 0.3s;
+}
+
+.btnClick-icon svg:hover,
+.btnClick-icon svg:hover {
+    color: var(--third-color);
+}
+
+.reset-btn {
+    height: 10%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.current-btn {
+    height: 5%;
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1200px){
+    .WeatherCity {
+        width: 600px;
+    }
+
+    .all-city .one-city {
+        width: 180px;
+    }
+
+    .btnClick-icon svg {
+        font-size: 20px;
+    }
+}
+
+
+@media only screen and (max-width: 680px){
+    .weatherBox {
+        width: 100%;
+    }
+
+    .weatherBox .boxs .mini-boxs h1 {
+        font-size: 1.9em;
+    }
+
+    .WeatherCity {
+        width: 100%;
+    }
+
+    .all-city .one-city {
+        width: 45%;
+        height: 50px;
+    }
+}
