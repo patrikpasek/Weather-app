@@ -70,12 +70,6 @@ const WeatherBox:React.FC = () => {
         setWind(data.wind.speed)
     }
 
-    useEffect(() => {
-        setTimeout((): void => {
-            navigator.geolocation.getCurrentPosition(getGeoPosition)
-        }, 1500)
-    }, [])
-
     const currentPosition = (): void => {
         navigator.geolocation.getCurrentPosition(getGeoPosition)
     }
@@ -146,7 +140,13 @@ const WeatherBox:React.FC = () => {
         setCityLenght(cityLenght + 1)
     }
 
-    useEffect( () => {
+    /////////////////////////////////
+    // Useeffect pro loader a nastavení měst
+    useEffect(() => {
+        setTimeout((): void => {
+            navigator.geolocation.getCurrentPosition(getGeoPosition)
+        }, 1500)
+
         setCity(city)
     }, [])
 
