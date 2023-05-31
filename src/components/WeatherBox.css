@@ -169,6 +169,56 @@
     align-items: center;
 }
 
+.search-bar {
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-bar form {
+    display: flex;
+    gap: 15px;
+}
+
+.search-bar form input {
+    border: none;
+    outline: none;
+    border-radius: 8px;
+}
+
+.search-bar form #text {
+    width: 200px;
+    height: 30px;
+    padding: 0 5%;
+
+    border: 2px solid var(--primary-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 14px;
+
+    transition: all 0.3s;
+}
+
+.search-bar form #text:focus{
+    border: 2px solid var(--third-color);
+}
+
+.search-bar form #submit{
+    width: 80px;
+    cursor: pointer;
+
+    background-color: var(--secondary-color);
+    color: var(--fourth-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    transition: all 0.3s;
+}
+
+.search-bar form #submit:hover,
+.search-bar form #submit:active {
+    box-shadow: var(--secondary-color) 0px 5px 15px;
+}
+
 @media only screen and (max-width: 1200px){
     .WeatherCity {
         width: 600px;

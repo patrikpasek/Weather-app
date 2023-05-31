@@ -85,9 +85,11 @@ const WeatherBox:React.FC = () => {
     const [city, setCity] = useState<any>(data)
 
     const cityHandler = async (nameCity: string) => {
-        const filteredCity: any = data.filter((oneCity) => {
+        const filteredCity: any = city.filter((oneCity: any) => {
             return oneCity.nameCity === nameCity
         })
+
+        console.log(filteredCity)
 
         setbackgroundImage(filteredCity[0].image)
         setNameCity(filteredCity[0].nameCity)
@@ -124,13 +126,29 @@ const WeatherBox:React.FC = () => {
         setCity(filteredCity)
     }
 
-    const deleteAllHandler = (): void => {
-        setCity([])
+    /////////////////////////////////
+    // Submit pro přidání města
+    const [valueCity, setValueCity] = useState<string>('')
+    let [cityLenght, setCityLenght] = useState<number>(10)
+
+    const formSubmit = (e: any): void => {
+        e.preventDefault()
+
+        let newCity = {
+            id: cityLenght + 1,
+            nameCity: valueCity,
+            image: clouds
+        }
+
+        city.push(newCity)
+
+        setValueCity('')
+        setCityLenght(cityLenght + 1)
     }
 
-    const repeatAllHandler = (): void => {
-        setCity(data)
-    }
+    useEffect( () => {
+        setCity(city)
+    }, [])
 
     return (
         <>
@@ -180,6 +198,12 @@ const WeatherBox:React.FC = () => {
                 </div>
                 <div className='container-WeatherCity'>
                     <div className="WeatherCity">
+                        <div className="search-bar">
+                            <form onSubmit={ formSubmit }>
+                                <input type="text" id='text' value={ valueCity } onChange={ (e) => setValueCity(e.target.value) }/>
+                                <input type="submit" id='submit' value="Přidat"/>
+                            </form>
+                        </div>
                         <div className="all-city">
                             {
                                 city.map((oneCity: any) => {
@@ -197,8 +221,7 @@ const WeatherBox:React.FC = () => {
                             }
                         </div>
                         <div className="reset-btn">
-                            <a href="#btn" onClick={ deleteAllHandler }>Vymazat</a>
-                            <a href="#btn" onClick={ repeatAllHandler }>Načíst</a>
+                            
                         </div>
                         <div className='current-btn'>
                             <a href="#btn" onClick={ currentPosition }>Aktuální poloha</a>
