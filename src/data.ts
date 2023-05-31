@@ -9,7 +9,7 @@ import imageBerlin from './images/berlin.jpg'
 import imageOslo from './images/oslo.jpg'
 import imageBratislava from './images/bratislava.jpg'
 
-const city = [{
+const city: any [] = [{
     id: 1,
     nameCity: 'Praha',
     image: imagePraha

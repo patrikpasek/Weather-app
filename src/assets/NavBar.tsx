@@ -1,7 +1,7 @@
 import './NavBar.css'
 import NavbarLogo from '../images/navbar-logo.png'
 
-const NavBar = () => {
+const NavBar: React.FC = () => {
     return (
         <div className="container-navbar">
             <div className="navbar">

@@ -10,12 +10,16 @@ import Forecast from './Forecast'
 import data from '../data'
 import clouds from '../images/clouds.jpg'
 
-const apiKey: string = 'ba4473042f3320c23c2b1d1af3160422'
+const apiKey1: string = 'ba4473042f3320c23c2b1d1af3160422'
+const apiKey2: string = 'e44379e893dd4085bb683919233005'
+const days: number = 7
 
 const WeatherBox:React.FC = () => {
     ///////////////////
     // Definování Hodnot
-    let latitude: string, longitude:string
+    let latitude: string, longitude: string
+
+    let [arrayForecast, setArrayForecast] = useState<string[]>([])
     
     let [loading, setLoading] = useState<boolean>(true)
     
@@ -38,10 +42,17 @@ const WeatherBox:React.FC = () => {
         latitude = position.coords.latitude
         longitude =  position.coords.longitude
 
-        const apiLatLon: string = `https://api.openweathermap.org/data/2.5/weather?lat=${ latitude }&lon=${ longitude }&appid=${ apiKey }&lang=cz&units=metric`
+        const apiLatLon: string = `https://api.openweathermap.org/data/2.5/weather?lat=${ latitude }&lon=${ longitude }&appid=${ apiKey1 }&lang=cz&units=metric`
 
-        const response = await fetch(apiLatLon)
+        const response: Response = await fetch(apiLatLon)
         let data: any = await response.json()
+
+        let api: string = `https://api.weatherapi.com/v1/forecast.json?key=${ apiKey2 }&q=${ latitude },${ longitude }&days=${ days }`
+
+        const response2: Response = await fetch(api)
+        let dataForecast: any = await response2.json()
+
+        setArrayForecast(dataForecast.forecast.forecastday)
 
         setLoading(false)
 
@@ -62,10 +73,10 @@ const WeatherBox:React.FC = () => {
     useEffect(() => {
         setTimeout((): void => {
             navigator.geolocation.getCurrentPosition(getGeoPosition)
-        }, 1000)
+        }, 1500)
     }, [])
 
-    const currentPosition = ():void => {
+    const currentPosition = (): void => {
         navigator.geolocation.getCurrentPosition(getGeoPosition)
     }
     
@@ -74,17 +85,24 @@ const WeatherBox:React.FC = () => {
     const [city, setCity] = useState<any>(data)
 
     const cityHandler = async (nameCity: string) => {
-        const filteredCity = data.filter((oneCity) => {
+        const filteredCity: any = data.filter((oneCity) => {
             return oneCity.nameCity === nameCity
         })
 
         setbackgroundImage(filteredCity[0].image)
         setNameCity(filteredCity[0].nameCity)
 
-        const apiCity: string = `https://api.openweathermap.org/data/2.5/weather?q=${ filteredCity[0].nameCity }&appid=${ apiKey }&lang=cz&units=metric`
+        let apiCity: string = `https://api.openweathermap.org/data/2.5/weather?q=${ filteredCity[0].nameCity }&appid=${ apiKey1 }&lang=cz&units=metric`
 
-        const response = await fetch(apiCity)
+        const response: Response = await fetch(apiCity)
         let dataCity: any = await response.json()
+
+        let api: string = `https://api.weatherapi.com/v1/forecast.json?key=${ apiKey2 }&q=${ filteredCity[0].nameCity }}&days=${ days }`
+
+        const response2: Response = await fetch(api)
+        let dataForecast: any = await response2.json()
+
+        setArrayForecast(dataForecast.forecast.forecastday)
 
         setCountry(dataCity.sys.country)
         setWeather(dataCity.weather[0].description)
@@ -99,7 +117,7 @@ const WeatherBox:React.FC = () => {
     }
 
     const deleteCityHandler = (id: number): void => {
-        const filteredCity = city.filter((oneCity: any) => {
+        const filteredCity: any = city.filter((oneCity: any) => {
             return oneCity.id !== id
         })
 
@@ -116,7 +134,7 @@ const WeatherBox:React.FC = () => {
 
     return (
         <>
-            { loading ?  <Loader />: 
+            { loading ?  <Loader /> : 
                 <>
                     <div className="container-app" style={{ backgroundImage: `linear-gradient(#0000002f, #DDE6ED), url(${ backgroundImage })`}}>
                     <div className='container-weatherBox'>
@@ -188,8 +206,8 @@ const WeatherBox:React.FC = () => {
                     </div>
                 </div>
             </div>
-            <Forecast />
-                </>
+            <Forecast pushForecast={ arrayForecast }/>
+            </>
             }
         </>
     )
